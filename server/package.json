@@ -4,17 +4,29 @@
   "description": "student management application",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node-dev src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shreyas S Chorge",
   "license": "ISC",
   "dependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/cookie-session": "^2.0.39",
+    "@types/cors": "^2.8.10",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.3",
+    "@types/jsonwebtoken": "^8.3.8",
+    "@types/mongoose": "^5.11.97",
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-validator": "^6.11.1",
+    "express-async-errors": "^3.1.1",
+    "express-validator": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1"
+    "mongoose": "^5.12.13",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
   }
 }

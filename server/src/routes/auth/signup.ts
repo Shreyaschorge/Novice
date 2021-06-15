@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { validateRequest } from '../../middlewares';
 import { BadRequestError } from '../../errors';
 
-import { Admin } from '../../models/admin';
+import { User } from '../../models/user';
 
 const router = express.Router();
 
@@ -22,13 +22,13 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    const existingUser = await Admin.findOne({ email });
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       throw new BadRequestError('Email in use');
     }
 
-    const user = Admin.build({ email, password });
+    const user = User.build({ email, password });
     await user.save();
 
     // Generate JWT

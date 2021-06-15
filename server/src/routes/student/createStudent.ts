@@ -1,5 +1,4 @@
 import express, {Request, Response} from 'express';
-import { promisify } from 'util';
 import { body } from 'express-validator';
 import { BadRequestError } from '../../errors';
 import {requireAuth, validateRequest} from '../../middlewares';
@@ -9,7 +8,7 @@ import { getProfilePicture } from '../../services/profilePhotos';
 
 const router = express.Router();
 
-router.post("/createStudent",
+router.post("/student",
   [
     body('name').not().isEmpty().withMessage('Name is required'),
     body('email').not().isEmpty().withMessage('Email is required').isEmail().withMessage("Email must be valid"),
@@ -21,7 +20,7 @@ router.post("/createStudent",
       }
       return true;
     })
-  ], 
+  ],
   validateRequest,
   async (req: Request, res: Response) => {
 

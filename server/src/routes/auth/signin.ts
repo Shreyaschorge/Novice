@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { validateRequest } from '../../middlewares';
 import { BadRequestError } from '../../errors';
 
-import { Admin } from '../../models/admin';
+import { User } from '../../models/user';
 import { Password } from '../../services/password';
 
 const router = express.Router();
@@ -23,11 +23,13 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
-    const existingUser = await Admin.findOne({ email });
+    
+    const existingUser = await User.findOne({ email });
     if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
     }
-
+    console.log(email, typeof password, existingUser.password);
+    
     const passwordsMatch = await Password.compare(
       existingUser.password,
       password

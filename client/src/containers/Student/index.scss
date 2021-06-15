@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.student-container-left {
+  display: grid;
+  place-items: center;
+  padding: 20px 0px 20px 20px;
+  .student-inner-container-left {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 80px 20px 20px;
+    margin-left: 80px;
+    place-items: center;
+    border-right: 5px solid $primary-color-light-1;
+  }
+}
+
+.student-container-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 60px;
+  padding: 20px 20px 20px 0px;
+  .student-inner-container-left {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 80px 20px 20px;
+    margin-left: 80px;
+    place-items: center;
+    border-right: 5px solid #b39ef0;
+  }
+}

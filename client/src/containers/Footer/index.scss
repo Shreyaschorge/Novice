@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+.footer-text {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+.footer-link {
+  color: $primary-color-light-1;
+}
+.footer-link:hover {
+  color: $primary-color;
+}

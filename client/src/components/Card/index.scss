@@ -1,0 +1,12 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .options {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 20px;
+  }
+}

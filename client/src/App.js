@@ -1,27 +1,13 @@
-import {useEffect, useState} from 'react'
-import axios from 'axios';
-import './App.css';
+import 'antd/dist/antd.css';
+import './App.scss';
+
+import Home from 'Pages/Home';
 
 function App() {
 
-  const [data, setData] = useState(null);
-
-  const fetchData = async () => {
-    const res = await axios.get('/api/test');
-    setData(res.data);
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [data]);
-
   return (
     <>
-      {data ? 
-      <div className="App">
-        <h2> {data} </h2>
-      </div> : 
-      <></>}
+      <Home />
     </>
     
   );

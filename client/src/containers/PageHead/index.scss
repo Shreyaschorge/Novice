@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+.site-page-header {
+  // overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.ant-menu-item:hover,
+.ant-menu-item-active,
+.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-submenu-active,
+.ant-menu-submenu-title:hover {
+  color: $primary-color;
+}
+
+.ant-menu-item-selected {
+  color: $primary-color;
+}

@@ -6,6 +6,11 @@ const start = async () => {
   console.log("Starting up...")
 
   try {
+
+    if (!process.env.JWT_KEY){
+      throw new Error('JWT_KEY must be defined');
+    }
+
     if (!process.env.MONGO_URI) {
       throw new Error('MONGO_URI must be defined');
     }
@@ -17,7 +22,7 @@ const start = async () => {
     });
     console.log('Connected to MongoDb...');
   } catch (err) {
-    
+    console.log(err)
   }
 
   app.listen(5000, () => {

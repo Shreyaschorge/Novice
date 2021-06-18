@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import {UserDoc} from './user';
 
 interface StudentAttrs {
   name: string;
@@ -7,6 +8,7 @@ interface StudentAttrs {
   email: string;
   branch: string;
   address: string;
+  userId: string,
 }
 
 interface StudentDoc extends mongoose.Document {
@@ -16,6 +18,7 @@ interface StudentDoc extends mongoose.Document {
   branch: string;
   email: string;
   address: string;
+  userId: string,
 }
 
 interface StudentModel extends mongoose.Model<StudentDoc> {
@@ -47,6 +50,9 @@ const studentSchema = new mongoose.Schema(
     address: {
       type: String,
       required: true,
+    },
+    userId: {
+      type: String,
     }
   },
   {

@@ -10,6 +10,7 @@ import {StudentReqBodyModel} from "../../types/student"
 const router = express.Router();
 
 router.put("/student/:id",
+  requireAuth,
   [
     body('name').not().isEmpty().withMessage('Name is required').isLength({max: 25}).withMessage("Name should have maximum of 25 characters"),
     body('email').not().isEmpty().withMessage('Email is required').isEmail().withMessage("Email must be valid"),
@@ -31,7 +32,7 @@ router.put("/student/:id",
       throw new NotFoundError();
     }
 
-    const {name, email, branch, address, score, imageURL} = req.body;
+    const {name, email, branch, address, score, imageURL, user} = req.body;
     try {
       student.set({
         name,
@@ -39,7 +40,8 @@ router.put("/student/:id",
         branch,
         address,
         score: parseFloat(score.toFixed(2)),
-        imageURL 
+        imageURL,
+        user 
       });
       await student.save();
       res.status(200).send(student);

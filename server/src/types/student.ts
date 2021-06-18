@@ -1,3 +1,6 @@
+import mongoose from 'mongoose';
+import { UserDoc } from '../models/user';
+
 export type StudentReqBodyModel = {
   name: string; 
   email: string;
@@ -6,4 +9,5 @@ export type StudentReqBodyModel = {
   score: number;
   imageURL?: string;
   id?: string;
+  user: string,
 }

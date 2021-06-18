@@ -6,6 +6,7 @@ import { Student } from '../../models/students';
 const router = express.Router();
 
 router.delete("/student",
+  requireAuth,
   async (req: Request, res: Response) => {
 
     try {

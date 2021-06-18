@@ -6,10 +6,11 @@ import { Student } from '../../models/students';
 const router = express.Router();
 
 router.get("/student",
+  requireAuth,
   async (req: Request, res: Response) => {
 
     try {
-      const students = await Student.find({});
+      const students = await Student.find({userId: req.currentUser!.id});
       res.status(200).send(students);
       
     } catch (err) {

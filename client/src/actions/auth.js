@@ -6,13 +6,13 @@ import {currentuser} from "utils/currentUser";
 import { CURRENT_USER, SET_ERRORS, SIGNOUT } from 'actions/constants';
 
 // -------------------------------------------------------
-    // http://localhost:5000 => /api
+    // /api => /api
 // -------------------------------------------------------
 
 export const signup = (user) => async (dispatch) => {
   try {
     
-    const {data} = await axios.post("http://localhost:5000/signup", user);
+    const {data} = await axios.post("/api/signup", user);
     currentuser.set = data;
     dispatch({
       type: CURRENT_USER,
@@ -33,7 +33,7 @@ export const signup = (user) => async (dispatch) => {
 
 export const signin = (user) => async (dispatch) => {
   try{
-    const {data} = await axios.post("http://localhost:5000/signin", user);
+    const {data} = await axios.post("/api/signin", user);
     currentuser.set = data;
     dispatch({
       type: CURRENT_USER,
@@ -54,7 +54,7 @@ export const signin = (user) => async (dispatch) => {
 
 export const signout = () => async (dispatch) => {
   try {
-    await axios.get("http://localhost:5000/signout");
+    await axios.get("/api/signout");
     currentuser.remove();
     dispatch({
       type: SIGNOUT

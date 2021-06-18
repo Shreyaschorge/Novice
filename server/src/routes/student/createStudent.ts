@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import { body } from 'express-validator';
-import { BadRequestError } from '../../errors';
+import { BadRequestError, NotAuthorizedError } from '../../errors';
 import {requireAuth, validateRequest} from '../../middlewares';
 
 import { Student } from '../../models/students';
@@ -11,6 +11,7 @@ import {StudentReqBodyModel} from "../../types/student";
 const router = express.Router();
 
 router.post("/student",
+  requireAuth,
   [
     body('name').not().isEmpty().withMessage('Name is required').isLength({max: 25}).withMessage("Name should have maximum of 25 characters"),
     body('email').not().isEmpty().withMessage('Email is required').isEmail().withMessage("Email must be valid"),
@@ -24,7 +25,7 @@ router.post("/student",
     })
   ],
   validateRequest,
-  async (req: Request<{}, {}, StudentReqBodyModel>, res: Response) => { 
+  async (req: Request<{}, {}, StudentReqBodyModel>, res: Response) => {
 
     const {name, email, branch, address, score } = req.body;
 
@@ -42,7 +43,8 @@ router.post("/student",
         branch,
         address,
         score: parseFloat(score.toFixed(2)),
-        imageURL: getProfilePicture() 
+        imageURL: getProfilePicture(),
+        userId: req.currentUser!.id, 
       });
   
       await newStudent.save();

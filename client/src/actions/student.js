@@ -5,7 +5,7 @@ import {SET_ERRORS, GET_STUDENTS, SET_CURRENT_STUDENT, SET_QUERY_RESULT} from "a
 
 export const addStudent = (user) => async (dispatch) => {
   try {
-    await axios.post('http://localhost:5000/student', user);
+    await axios.post('/api/student', user);
     notification.success({
       message: "Student Added Successfully",
       placement: "bottomRight"
@@ -21,12 +21,13 @@ export const addStudent = (user) => async (dispatch) => {
 
 export const getStudents = () => async (dispatch) => {
   try {
-    const {data} = await axios.get('http://localhost:5000/student');
+    const {data} = await axios.get('/api/student');
     dispatch({
       type: GET_STUDENTS,
       payload: data
     })
   } catch (err) {
+    console.log(err)
     dispatch({
       type: SET_ERRORS,
       payload: err.response.data.errors
@@ -36,7 +37,7 @@ export const getStudents = () => async (dispatch) => {
 
 export const showStudent = (id) => async (dispatch) => {
   try{
-    const {data} = await axios.get(`http://localhost:5000/student/${id}`);
+    const {data} = await axios.get(`/api/student/${id}`);
     dispatch({
       type: SET_CURRENT_STUDENT,
       payload: data
@@ -51,7 +52,7 @@ export const showStudent = (id) => async (dispatch) => {
 
 export const editStudent = (id, user) => async (dispatch) => {
   try {
-    const {data} = await axios.put(`http://localhost:5000/student/${id}`, user);
+    const {data} = await axios.put(`/api/student/${id}`, user);
     dispatch({
       type: SET_CURRENT_STUDENT,
       payload: data
@@ -67,7 +68,7 @@ export const editStudent = (id, user) => async (dispatch) => {
 
 export const searchStudent = (query) => async (dispatch) => {
   try{
-    const {data} = await axios.get('http://localhost:5000/search', { params: { name: query } });
+    const {data} = await axios.get('/api/search', { params: { name: query } });
     dispatch({
       type: SET_QUERY_RESULT,
       payload: data
@@ -82,7 +83,7 @@ export const searchStudent = (query) => async (dispatch) => {
 
 export const deleteStudent = (id) => async (dispatch) => {
   try{
-    await axios.delete(`http://localhost:5000/student/${id}`);
+    await axios.delete(`/api/student/${id}`);
     dispatch(getStudents());
     notification.success({
       message: "Student deleted successfully",
@@ -98,7 +99,7 @@ export const deleteStudent = (id) => async (dispatch) => {
 
 export const deleteAllStudents = () => async (dispatch) => {
   try{
-    await axios.delete("http://localhost:5000/student");
+    await axios.delete("/api/student");
     dispatch(getStudents());
     notification.success({
       message: "All students deleted successfully",

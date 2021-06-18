@@ -28,3 +28,14 @@
     border-right: 5px solid #b39ef0;
   }
 }
+
+.signup-link {
+  color: $primary-color-light-1;
+}
+.signup-link:hover {
+  color: $primary-color;
+}
+
+.signin-required {
+  color: $primary-color;
+}

@@ -3,11 +3,13 @@ services:
   mongo:
     image: mongo
     restart: always
-  mongo-express:
-    image: mongo-express
-    restart: always
     ports:
-      - 8081:8081
+      - 27017:27017
+  # mongo-express:
+  #   image: mongo-express
+  #   restart: always
+  #   ports:
+  #     - 8081:8081
   nginx:
     restart: always
     build:
@@ -25,10 +27,14 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/students
       - JWT_KEY=secret
-  # client:
-  #   build:
-  #     dockerfile: Dockerfile.dev
-  #     context: ./client
-  #   volumes:
-  #     - /app/node_modules
-  #     - ./client:/app
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    ports:
+      - 3001:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true

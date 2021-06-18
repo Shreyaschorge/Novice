@@ -1,16 +1,27 @@
 import React from 'react'
 import "./index.scss"
-import signinSVG from "images/signin.svg"
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom'
 
+import { useForm, Controller } from "react-hook-form";
 import { Row, Col, Form } from 'antd'
 import { PrimaryButton} from 'components/Buttons';
 import {Input, InputPassword} from "components/Input";
+import signinSVG from "images/signin.svg"
+
+import {signin} from "actions/auth";
 
 import useWindowDimensions from 'hooks/windowDimension';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const { control, errors, handleSubmit } = useForm();
 
-  const { height, width } = useWindowDimensions();
+  const { height } = useWindowDimensions();
+
+  const onSubmit = (user) => {
+    dispatch(signin(user))
+  }; 
 
   return (
     <Row>
@@ -28,22 +39,39 @@ const SignIn = () => {
       </Col>
     <Col span={12}>
       <div className="signin-container-right" style={{height}}>
-        <div className="signin-inner-container-right">
+        <div className="signin-inner-container-right" style={{width: "500px"}}>
           <h1>Signin</h1>
-          <Form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Item>
               <h3>Email</h3>
-              <Input placeholder='email' style={{width: "500px"}}/>
+              <Controller 
+                name="email"
+                control={control}
+                rules={{required: true}}
+                defaultValue=""
+                render={props => <Input onChange={e => props.onChange(e.target.value)} placeholder='email' style={{width: "500px"}}/>}
+              />
+              {errors.email && <span className="signin-required">*This field is required</span>}
             </Form.Item>
             <Form.Item>
               <h3>Password</h3>
-              <InputPassword placeholder='*******' style={{width: "500px"}}/>
+              <Controller 
+                style={{display: "block"}}
+                name="password"
+                control={control}
+                defaultValue=""
+                rules={{required: true}}
+                render={props => 
+                  <InputPassword onChange={e => props.onChange(e.target.value)} autoComplete="on" placeholder='*******' style={{width: "500px"}}/>
+                }
+              />
+               {errors.password && <span className="signin-required">*This field is required</span>}
             </Form.Item>
             <Form.Item>
-              <PrimaryButton style={{width: "500px"}}>Signin</PrimaryButton>
+              <PrimaryButton htmlType="submit" style={{width: "500px"}}>Signin</PrimaryButton>
             </Form.Item>
-              <p>Don't have an Account? Signup</p>
-          </Form>
+              <p>Don't have an account? <Link to="/signup" className="signup-link">Signup</Link></p>
+          </form>
         </div>
       </div>
     </Col>

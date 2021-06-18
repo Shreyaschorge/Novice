@@ -1,1 +1,4 @@
-
+@import "./styles/variables.scss";
+.anticon.ant-notification-notice-icon-success {
+  color: $primary-color;
+}

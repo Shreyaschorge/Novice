@@ -1,46 +1,65 @@
 import React from 'react';
 import './index.scss';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {MoreOutlined, LogoutOutlined, DeleteOutlined, UserAddOutlined} from '@ant-design/icons'
-import { PageHeader, Row, Statistic, Menu, Tooltip} from 'antd';
+import { PageHeader, Row, Statistic, Menu, Tooltip, Popconfirm} from 'antd';
+
+import { signout } from 'actions/auth';
+import { deleteAllStudents, searchStudent } from 'actions/student';
 
 import { InputSearch } from 'components/Input';
-import AddStudentModal from 'containers/AddStudentModal';
 
-const PageHead = () => {
+const PageHead = ({showModal}) => {
 
-  const [visible, setVisible] = React.useState(false);
-  const [confirmLoading, setConfirmLoading] = React.useState(false);
-  const [modalText, setModalText] = React.useState('Content of the modal');
+  const {students} = useSelector(state => state.students);
+  const dispatch = useDispatch()
 
-  const showModal = () => {
-    setVisible(true);
-  };
+  const handleDeleteAll = () => {
+    dispatch(deleteAllStudents())
+  }
 
-  const handleOk = () => {
-    setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setVisible(false);
-  };
+  const onSignout = () => {
+    dispatch(signout())
+  }
 
   const getMenu = () => {
     return (
       <Menu>
-        <Menu.Item onClick={showModal}>
+        <Menu.Item key="addStudent" onClick={showModal}>
           Add Students {" "} <UserAddOutlined />
         </Menu.Item>
-        <Menu.Item>Delete All Students {" "} <DeleteOutlined /></Menu.Item>
-        <Menu.Item>Logout {" "} <LogoutOutlined /></Menu.Item>
+        <Popconfirm title="Are You Sure..?" placement = "left" onConfirm={handleDeleteAll}>
+        <Menu.Item key="delete all students">
+          Delete All Students {" "} 
+          <DeleteOutlined />
+        </Menu.Item>
+
+        </Popconfirm>
+        
+        <Menu.Item key="logout" onClick={onSignout}>Logout {" "} <LogoutOutlined /></Menu.Item>
       </Menu>
     )
+  }
+
+  const getAvgScore = () => {
+    if(students){
+      let score = 0;
+      students.forEach(element => {
+        score = score + element.score;
+      });
+      return students.length === 0 ? 0 : (score/students.length).toFixed(2);
+    }
+  }
+
+  const getTotalStudents = () => {
+    if(students){
+      return students.length
+    }
+  }
+
+  const onSearch = (val) => {
+    if(val.length > 0) dispatch(searchStudent(val.trim()))
   }
 
   return (
@@ -48,30 +67,23 @@ const PageHead = () => {
     <PageHeader
         className="site-page-header"
         title={"Students"}
-        subTitle={<InputSearch loading={false} placeholder="Search Students"/>}
-        extra={[<Tooltip placement="bottom" title={getMenu()} color='#fff'>
+        subTitle={<InputSearch loading={false} onSearch={onSearch} placeholder="Search by Name"/>}
+        extra={[<Tooltip key="menu" placement="bottom" title={getMenu()} color='#fff'>
         <MoreOutlined style={{fontSize : 27}}/>
       </Tooltip>]}
       >
       <Row>
         <Statistic
+          key="Total Student"
           title="Total Students"
-          value={4}
+          value={getTotalStudents()}
         />
-        <Statistic title="Avg Score" value={65.85} 
+        <Statistic key="Avg Score" title="Avg Score" value={getAvgScore()} 
           style={{
             margin: '0 32px',
           }} />
       </Row>
       </PageHeader>
-
-      <AddStudentModal 
-        title="Add Student"
-        visible={visible}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      />
   </>
   )
 }

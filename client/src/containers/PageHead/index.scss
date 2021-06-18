@@ -18,3 +18,45 @@
 .ant-menu-item-selected {
   color: $primary-color;
 }
+
+.ant-btn-primary {
+  color: #fff;
+  background: $primary-color;
+  border-color: $primary-color;
+}
+
+.ant-popover-message > .anticon {
+  color: $primary-color;
+}
+
+.ant-menu-light .ant-menu-item:hover,
+.ant-menu-light .ant-menu-item-active,
+.ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-light .ant-menu-submenu-active,
+.ant-menu-light .ant-menu-submenu-title:hover {
+  color: $primary-color;
+}
+
+.ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border: 1px solid $primary-color;
+}
+
+.ant-input-affix-wrapper {
+  background-color: #fff;
+  background: #fff;
+}
+
+.ant-input-affix-wrapper > input.ant-input {
+  background: #fff;
+  height: auto;
+}
+.ant-input-affix-wrapper > input.ant-input:hover {
+  background: #fff;
+  height: auto;
+}
+.ant-input-affix-wrapper > input.ant-input:focus {
+  background: #fff;
+  height: auto;
+}

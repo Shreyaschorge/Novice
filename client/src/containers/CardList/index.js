@@ -2,14 +2,13 @@ import React from 'react'
 import './index.scss'
 import Card from 'components/Card';
 
-const CardList = () => {
+const CardList = ({students}) => {
   return (
     <div className='container'>
       <div className="card-list">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {students.map((student) => {
+          return <Card key={student.email} student={student}/>
+        })}
       </div>
     </div>
   )

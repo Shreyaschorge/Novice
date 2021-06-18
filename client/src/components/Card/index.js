@@ -1,20 +1,42 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useDispatch } from 'react-redux'
+import {Link} from 'react-router-dom'
 import './index.scss'
 import {MoreOutlined} from '@ant-design/icons'
 import {Card as AntCard, Avatar, Image, Menu, Tooltip} from 'antd'
 import { PrimaryButton } from 'components/Buttons';
 
-const Card = () => {
+import { deleteStudent } from 'actions/student';
 
-  const { Meta } = AntCard;
+import EditStudentModal from 'containers/EditStudentModal';
+
+const Card = (props) => {
+
+  const dispatch = useDispatch();
+
+  const [visible, setVisible] = useState(false);
+
+  const { name, email, imageURL, branch, id } = props.student
+
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteStudent(id));
+  }
 
   const getMenu = () => {
     return (
       <Menu>
-        <Menu.Item>
+        <Menu.Item key="edit" onClick={showModal}>
           Edit
         </Menu.Item>
-        <Menu.Item>Delete</Menu.Item>
+        <Menu.Item key="delete" onClick={handleDelete}>Delete</Menu.Item>
       </Menu>
     )
   }
@@ -33,15 +55,24 @@ const Card = () => {
           </div>
           <Avatar
             size={100}
-            src={<Image src="https://images.pexels.com/photos/2269872/pexels-photo-2269872.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />}
+            src={<Image src={imageURL} />}
           />
 
-          <h2>Stephane Grider</h2>
-          <span style={{color: '#a89fc2'}}>stephanegrider@gmail.com</span>
-          <h3>IT</h3>
-          <PrimaryButton>View Profile</PrimaryButton>
+          <h2 className="student-card-name">{name}</h2>
+          <span style={{color: '#a89fc2'}}>{email}</span>
+          <h3 style={{textAlign: "center"}}>{branch}</h3>
+          <PrimaryButton > <Link className="card-link" to={{pathname: "/student", state: {id} }}>View Profile</Link></PrimaryButton>
         </div>
       </AntCard>
+      <EditStudentModal 
+        currentStudent={props.student}
+        destroyOnClose={true}
+        title="Edit Student"
+        visible={visible}
+        onCancel={handleCancel}
+        setVisible={setVisible}
+        footer={null}
+      />  
     </div>
   )
 }

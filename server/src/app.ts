@@ -17,6 +17,7 @@ import {createStudentRouter} from "./routes/student/createStudent";
 import { signoutRouter } from "./routes/auth/signout";
 import { signupRouter } from "./routes/auth/signup";
 import { signinRouter } from "./routes/auth/signin";
+import { currentUserRouter } from "./routes/auth/currentUser";
 
 const app = express();
 app.set('trust proxy', true);
@@ -35,6 +36,7 @@ app.use(showStudentRouter);
 app.use(showAllStudentsRouter);
 app.use(searchStudentRouter);
 app.use(signoutRouter);
+app.use(currentUserRouter);
 app.use(deleteStudentRouter);
 app.use(deleteAllStudentsRouter);
 app.use(editStudentRouter);

@@ -29,3 +29,20 @@
     border-right: 5px solid #b39ef0;
   }
 }
+
+.student-go-back {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 20px 0px 0px 20px;
+  z-index: 20;
+  .student-go-back-arrow {
+    color: $black-text-color;
+    font-size: 25px;
+    transition: all 100ms;
+  }
+  .student-go-back-arrow:hover {
+    font-size: 28px;
+    font-size-adjust: 25px;
+  }
+}

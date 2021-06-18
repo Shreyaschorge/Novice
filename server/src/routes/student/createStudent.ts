@@ -6,11 +6,13 @@ import {requireAuth, validateRequest} from '../../middlewares';
 import { Student } from '../../models/students';
 import { getProfilePicture } from '../../services/profilePhotos';
 
+import {StudentReqBodyModel} from "../../types/student";
+
 const router = express.Router();
 
 router.post("/student",
   [
-    body('name').not().isEmpty().withMessage('Name is required'),
+    body('name').not().isEmpty().withMessage('Name is required').isLength({max: 25}).withMessage("Name should have maximum of 25 characters"),
     body('email').not().isEmpty().withMessage('Email is required').isEmail().withMessage("Email must be valid"),
     body('branch').not().isEmpty().withMessage('Branch is required'),
     body('address').not().isEmpty().withMessage('Address is required'),
@@ -22,9 +24,9 @@ router.post("/student",
     })
   ],
   validateRequest,
-  async (req: Request, res: Response) => {
+  async (req: Request<{}, {}, StudentReqBodyModel>, res: Response) => { 
 
-    const {name, email, branch, address, score} = req.body;
+    const {name, email, branch, address, score } = req.body;
 
     const existingStudent = await Student.findOne({email});
 
@@ -39,7 +41,7 @@ router.post("/student",
         email,
         branch,
         address,
-        score,
+        score: parseFloat(score.toFixed(2)),
         imageURL: getProfilePicture() 
       });
   

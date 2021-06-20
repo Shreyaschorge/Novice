@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import { body } from 'express-validator';
-import { NotFoundError } from '../../errors';
+import { BadRequestError, NotFoundError } from '../../errors';
 import {requireAuth, validateRequest} from '../../middlewares';
 
 import { Student } from '../../models/students';
@@ -32,22 +32,20 @@ router.put("/student/:id",
       throw new NotFoundError();
     }
 
-    const {name, email, branch, address, score, imageURL, user} = req.body;
-    try {
-      student.set({
-        name,
-        email,
-        branch,
-        address,
-        score: parseFloat(score.toFixed(2)),
-        imageURL,
-        user 
-      });
-      await student.save();
-      res.status(200).send(student);
-    } catch (err) {
-      console.log(err)
-    }
+    if(student.userId !== req.currentUser!.id) throw new BadRequestError("Can't update student of another mentor")
+
+    const {name, email, branch, address, score, imageURL} = req.body;
+   
+    student.set({
+      name,
+      email,
+      branch,
+      address,
+      score: parseFloat(score.toFixed(2)),
+      imageURL
+    });
+    await student.save();
+    res.status(200).send(student);    
 
   });
 

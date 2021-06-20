@@ -8,14 +8,8 @@ const router = express.Router();
 router.delete("/student",
   requireAuth,
   async (req: Request, res: Response) => {
-
-    try {
-      await Student.deleteMany({});
-      res.status(200).send({"message": "All Student Deleted Successfully"});
-    } catch (err) {
-      console.log(err)
-    }
-    
+    await Student.deleteMany({"userId": req.currentUser!.id});
+    res.status(200).send({"message": "All Student Deleted Successfully"});
   });
 
   export {router as deleteAllStudentsRouter}

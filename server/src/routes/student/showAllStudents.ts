@@ -7,16 +7,9 @@ const router = express.Router();
 
 router.get("/student",
   requireAuth,
-  async (req: Request, res: Response) => {
-
-    try {
-      const students = await Student.find({userId: req.currentUser!.id});
-      res.status(200).send(students);
-      
-    } catch (err) {
-      console.log(err)
-    }
-
+  async (req: Request, res: Response) => { 
+    const students = await Student.find({userId: req.currentUser!.id});
+    res.status(200).send(students);
   });
 
   export {router as showAllStudentsRouter}

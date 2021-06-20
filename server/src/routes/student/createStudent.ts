@@ -31,29 +31,25 @@ router.post("/student",
 
     const existingStudent = await Student.findOne({email});
 
-    if(existingStudent){
-      throw new BadRequestError('Student Already Exist');
+    if(existingStudent) {
+      if(existingStudent.userId === req.currentUser!.id){
+        throw new BadRequestError('Student Already Exist');
+      }  else throw new BadRequestError('Student has been assigned to another mentor')
     }
+     
+    const newStudent = Student.build({
+      name,
+      email,
+      branch,
+      address,
+      score: parseFloat(score.toFixed(2)),
+      imageURL: getProfilePicture(),
+      userId: req.currentUser!.id, 
+    });
 
-    try {
+    await newStudent.save();
 
-      const newStudent = Student.build({
-        name,
-        email,
-        branch,
-        address,
-        score: parseFloat(score.toFixed(2)),
-        imageURL: getProfilePicture(),
-        userId: req.currentUser!.id, 
-      });
-  
-      await newStudent.save();
-  
-      res.status(201).send(newStudent);
-      
-    } catch (err) {
-      console.log(err)
-    }
+    res.status(201).send(newStudent);
 
   });
 

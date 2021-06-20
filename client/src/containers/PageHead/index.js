@@ -23,19 +23,26 @@ const PageHead = ({showModal}) => {
     dispatch(signout())
   }
 
+  const getDeleteButton = () => {
+    if(students){
+      if(students.length !== 0){
+        return (<Popconfirm title="Are You Sure..?" placement = "left" onConfirm={handleDeleteAll}>
+        <Menu.Item key="delete all students">
+          Delete All Students {" "} 
+          <DeleteOutlined />
+        </Menu.Item>
+        </Popconfirm>)
+      } else return <></>
+    }
+  }
+
   const getMenu = () => {
     return (
       <Menu>
         <Menu.Item key="addStudent" onClick={showModal}>
           Add Students {" "} <UserAddOutlined />
         </Menu.Item>
-        <Popconfirm title="Are You Sure..?" placement = "left" onConfirm={handleDeleteAll}>
-        <Menu.Item key="delete all students">
-          Delete All Students {" "} 
-          <DeleteOutlined />
-        </Menu.Item>
-
-        </Popconfirm>
+        {getDeleteButton()}
         
         <Menu.Item key="logout" onClick={onSignout}>Logout {" "} <LogoutOutlined /></Menu.Item>
       </Menu>

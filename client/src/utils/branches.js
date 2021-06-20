@@ -19,4 +19,8 @@ export const branches = [
     value: 'Civil Engineering',
     label: 'Civil Engineering'
   },
+  {
+    value: 'Not Assigned',
+    label: 'Not Assigned'
+  },
 ]

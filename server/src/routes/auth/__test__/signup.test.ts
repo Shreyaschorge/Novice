@@ -7,7 +7,7 @@ it("checks if /signup route handler exists", async () => {
 });
 
 it('returns a 201 on successful signup', async () => {
-  return request(app)
+  await request(app)
     .post('/signup')
     .send({
       email: 'test@test.com',
@@ -17,7 +17,7 @@ it('returns a 201 on successful signup', async () => {
 });
 
 it('returns a 400 with an invalid email', async () => {
-  return request(app)
+  await request(app)
     .post('/signup')
     .send({
       email: 'alskdflaskjfd',
@@ -27,7 +27,7 @@ it('returns a 400 with an invalid email', async () => {
 });
 
 it('returns a 400 with an invalid password', async () => {
-  return request(app)
+  await request(app)
     .post('/signup')
     .send({
       email: 'alskdflaskjfd',

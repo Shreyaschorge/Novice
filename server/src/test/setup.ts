@@ -11,6 +11,8 @@ declare global {
   }
 }
 
+jest.setTimeout(20000);
+
 // Setting up mongodb and environment
 let mongo: any;
 beforeAll(async () => {

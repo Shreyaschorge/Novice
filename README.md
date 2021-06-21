@@ -14,7 +14,7 @@ Steps to initialize the project
 
 ##### `docker-compose up --build`
 
-Open [http://localhost:3051/signup](http://localhost:3051/signin) to view it in your browser
+Open [http://localhost:3051/signup](http://localhost:3051/signup) to view it in your browser
 
 To access the database visit [http://localhost:8081](http://localhost:8081)
 

@@ -73,7 +73,7 @@ const PageHead = ({showModal}) => {
   <>
     <PageHeader
         className="site-page-header"
-        title={"Students"}
+        title={"Novice"}
         subTitle={<InputSearch loading={false} onSearch={onSearch} placeholder="Search by Name"/>}
         extra={[<Tooltip key="menu" placement="bottom" title={getMenu()} color='#fff'>
         <MoreOutlined style={{fontSize : 27}}/>

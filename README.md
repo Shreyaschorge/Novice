@@ -8,11 +8,15 @@ Prerequisite to run the project
 
 Steps to initialize the project
 
-##### git clone https://github.com/Shreyaschorge/Novice.git
+##### `git clone https://github.com/Shreyaschorge/Novice.git`
 
-##### cd Novice
+##### `cd Novice`
 
-##### docker-compose up --build
+##### `docker-compose up --build`
+
+Open [http://localhost:3051/signup](http://localhost:3051/signin) to view it in your browser
+
+To access the database visit [http://localhost:8081](http://localhost:8081)
 
 ## UI
 

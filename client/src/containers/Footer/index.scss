@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 0px 0px 20px 20px;
+}
+
+.footer-text {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+.footer-link {
+  color: $primary-color-light-1;
+}
+.footer-link:hover {
+  color: $primary-color;
+}

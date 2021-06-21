@@ -1,0 +1,23 @@
+@import '../../styles/variables.scss';
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .options {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 20px;
+  }
+  .card-link {
+    color: $background-primary-color;
+  }
+  .student-card-name {
+    text-align: center;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

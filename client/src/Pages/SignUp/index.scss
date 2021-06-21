@@ -1,0 +1,41 @@
+@import '../../styles/variables.scss';
+
+.signup-container-left {
+  display: flex;
+  align-items: center;
+  .signup-inner-container-left {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 80px 20px 20px;
+    margin-left: 80px;
+    place-items: center;
+    border-right: 5px solid $primary-color-light-1;
+  }
+}
+
+.signup-container-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 60px;
+  padding: 20px 20px 20px 0px;
+  .signup-inner-container-left {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 80px 20px 20px;
+    margin-left: 80px;
+    place-items: center;
+    border-right: 5px solid #b39ef0;
+  }
+}
+
+.signin-link {
+  color: $primary-color-light-1;
+}
+.signin-link:hover {
+  color: $primary-color;
+}
+
+.signup-required{
+  color: $primary-color;
+}

@@ -1,0 +1,32 @@
+@import '../../styles/variables.scss';
+
+.ant-cascader-picker-label
+  + .ant-cascader-input:not(.ant-cascader-picker-disabled
+    .ant-cascader-picker-label
+    + .ant-cascader-input) {
+  background: $background-primary-color;
+  border: 1px solid $background-secondary-color;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 16px;
+  color: $black-text-color;
+  box-shadow: none;
+}
+
+.ant-cascader-picker-label:hover
+  + .ant-cascader-input:not(.ant-cascader-picker-disabled
+    .ant-cascader-picker-label:hover
+    + .ant-cascader-input) {
+  background: $background-primary-color;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 16px;
+  color: $black-text-color;
+}
+
+.ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled),
+.ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover {
+  font-weight: 600;
+  background-color: $background-secondary-color;
+}

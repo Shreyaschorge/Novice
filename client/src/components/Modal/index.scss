@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+
+.ant-modal.primaryModal {
+  background: #ffffff;
+  padding: 0px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  .ant-modal-content {
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
+  .ant-modal-header {
+    border-radius: 10px 10px 0px 0px;
+    padding: 16px 20px;
+    border-bottom: 1px solid $border-grey-color;
+    .ant-modal-title {
+      font-weight: 600;
+      font-size: 20px;
+    }
+  }
+  .ant-modal-footer {
+    padding: 20px;
+  }
+  .ant-modal-body {
+    padding: 0px;
+  }
+
+  .ant-btn.secondaryButton {
+    color: $black-text-color;
+    font-size: 16px;
+    height: 40px;
+    padding: 0px 21px;
+    border: 1px solid $black-text-faded-color;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .ant-btn.ant-btn-primary {
+    background-color: $primary-color;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border-color: $primary-color-dark-1;
+    font-size: 16px;
+    height: 40px;
+    padding: 0px 21px;
+    color: #fff;
+  }
+
+  .ant-btn.ant-btn-primary:hover,
+  .ant-btn.ant-btn-primary:focus,
+  .ant-btn.ant-btn-primary:active {
+    background-color: $primary-color;
+    color: #fff;
+    border-color: $primary-color-dark-1;
+  }
+}

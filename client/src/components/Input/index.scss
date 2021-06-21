@@ -1,0 +1,103 @@
+@import '../../styles/variables.scss';
+
+.ant-input.inputPrimary {
+  background: $background-primary-color;
+  border: 1px solid $background-secondary-color;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 16px;
+  color: $black-text-color;
+}
+
+.ant-input.inputPrimary:hover,
+.ant-input.inputPrimary:focus,
+.ant-input.inputPrimary:active {
+  border-color: $primary-color;
+  outline: none;
+  box-shadow: none;
+}
+
+.ant-input.textarea {
+  background: $background-primary-color;
+  border: 1px solid $background-secondary-color;
+  border-radius: 5px;
+  font-size: 16px;
+  color: $black-text-color;
+}
+
+.ant-input.textarea:hover,
+.ant-input.textarea:focus,
+.ant-input.textarea:active {
+  border-color: $primary-color;
+  outline: none;
+  box-shadow: none;
+}
+
+.ant-btn:hover,
+.ant-btn:focus {
+  color: $primary-color;
+  background: #fff;
+  border-color: $primary-color;
+}
+
+.ant-input-search .ant-input,
+.ant-input-search .ant-input:focus {
+  border-color: $primary-color;
+  box-shadow: none;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.ant-input-search .ant-input:hover,
+.ant-input-search .ant-input:focus {
+  border-color: $primary-color;
+  box-shadow: none;
+  border-radius: 5px 0px 0px 5px;
+  height: 40px;
+}
+
+.ant-input-search
+  > .ant-input-group
+  > .ant-input-group-addon:last-child
+  .ant-input-search-button:not(.ant-btn-primary) {
+  color: rgba(0, 0, 0, 0.45);
+  height: 40px;
+  border: 1px solid $primary-color;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: $primary-color;
+  border-right-width: 1px !important;
+  z-index: 1;
+}
+
+.ant-input-affix-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 11px;
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: $background-primary-color;
+  background-image: none;
+  // border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  transition: all 0.3s;
+  display: inline-flex;
+  height: 40px;
+  font-size: 16px;
+  color: $black-text-color;
+  background: $background-primary-color;
+  border: 1px solid $background-secondary-color;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.ant-input-affix-wrapper > input.ant-input {
+  padding: 0;
+  border: none;
+  outline: none;
+  background: $background-primary-color;
+}

@@ -1,0 +1,18 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t shreyaschorge/novice-test -f ./server/Dockerfile.dev ./server
+
+script:
+  - docker run shreyaschorge/novice-test npm run test:ci
+
+after_success:
+  - docker build -t shreyaschorge/novice-client ./client
+  - docker build -t shreyaschorge/novice-nginx ./nginx
+  - docker build -t shreyaschorge/novice-api ./server
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push shreyaschorge/novice-client
+  - docker push shreyaschorge/novice-nginx
+  - docker push shreyaschorge/novice-api

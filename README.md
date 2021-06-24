@@ -1,6 +1,6 @@
 ## Novice
 
-Novice is a simple application which shares one-to-one relationship between students and its mentor, used by a mentor to manage their students.
+Novice is a simple application which shares one-to-many relationship between students and its mentor, used by a mentor to manage their students.
 
 Prerequisite to run the project
 
